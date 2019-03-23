@@ -3,11 +3,11 @@
   <title>Cmc&#39;s Blog</title>
   
   
-  <link href="/blog/cmc/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.caomuchang.com/"/>
+  <link href="https://www.caomuchang.com/"/>
   <updated>2019-03-23T08:10:51.156Z</updated>
-  <id>http://www.caomuchang.com/</id>
+  <id>https://www.caomuchang.com/</id>
   
   <author>
     <name>阿 菜</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://www.caomuchang.com/2019/03/22/hello-world/"/>
-    <id>http://www.caomuchang.com/2019/03/22/hello-world/</id>
+    <link href="https://www.caomuchang.com/2019/03/22/hello-world/"/>
+    <id>https://www.caomuchang.com/2019/03/22/hello-world/</id>
     <published>2019-03-22T07:59:19.374Z</published>
     <updated>2019-03-23T08:10:51.156Z</updated>
     
@@ -34,10 +34,10 @@
     
     </summary>
     
-      <category term="start" scheme="http://www.caomuchang.com/categories/start/"/>
+      <category term="start" scheme="https://www.caomuchang.com/categories/start/"/>
     
     
-      <category term="start" scheme="http://www.caomuchang.com/tags/start/"/>
+      <category term="start" scheme="https://www.caomuchang.com/tags/start/"/>
     
   </entry>
   
