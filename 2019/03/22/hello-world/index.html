@@ -492,10 +492,12 @@
                 <i class="fa fa-eye"></i>
               </span>
               
-                <span class="post-meta-item-text">热度：</span>
+                <span class="post-meta-item-text">阅读次数：</span>
               
-                <span class="leancloud-visitors-count"></span>
-				<span>℃</span>
+                <span class="leancloud-visitors-count"></span><br>
+                <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-edit"></i></span>字数： 73</span>&nbsp;|&nbsp;
+                <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-spinner"></i></span>阅读时长≈ 1 分钟</span>
+
             </span>
           
 
@@ -746,7 +748,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -765,7 +769,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">1</span>
+                      
+                    
+                    <span class="site-state-item-count">2</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1042,7 +1048,7 @@
     verify: false,
     notify: false,
     appId: 'x9JBJhzG4P7MbxydhzX2YvMi-gzGzoHsz',
-    appKey: '4p19qdi616gx6xcmYUf2TTSi',
+    appKey: '4p19qdi6l6gx6xcmYUf2TTSi',
     placeholder: '快来发表你的评论吧',
     avatar: 'mm',
     meta: guest,
@@ -1409,9 +1415,14 @@
               })
           } else {
             
-              var $element = $(document.getElementById(url));
-              $element.find('.leancloud-visitors-count').text('Counter not initialized! More info at console err msg.');
-              console.error('ATTENTION! LeanCloud counter has security bug, see how to solve it here: https://github.com/theme-next/hexo-leancloud-counter-security. \n However, you can still use LeanCloud without security, by setting `security` option to `false`.');
+              Counter('post', '/classes/Counter', JSON.stringify({ title: title, url: url, time: 1 }))
+                .done(function() {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(1);
+                })
+                .fail(function() {
+                  console.log('Failed to create');
+                });
             
           }
         })
@@ -1430,7 +1441,7 @@
               url: 'https://' + api_server + '/1.1' + url,
               headers: {
                 'X-LC-Id': 'x9JBJhzG4P7MbxydhzX2YvMi-gzGzoHsz',
-                'X-LC-Key': '4p19qdi616gx6xcmYUf2TTSi',
+                'X-LC-Key': '4p19qdi6l6gx6xcmYUf2TTSi',
                 'Content-Type': 'application/json',
               },
               data: data
