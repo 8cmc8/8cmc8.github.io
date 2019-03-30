@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[一个简单的迭代器实例]]></title>
+    <url>%2F2019%2F03%2F30%2Fselector%2F</url>
+    <content type="text"><![CDATA[实例代码1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859interface Selector &#123; boolean end(); Object current(); void next();&#125;public class Sequence &#123; //固定大小数组Object[]的包装类 private Object[] items; private int next = 0; public Sequence(int size) &#123; //初始化数组长度 items = new Object[size]; &#125; public void add(Object x) &#123; //往数组末尾插入Object对象 if (next &lt;= items.length) &#123; items[next] = x; next++; //游标移动到数组中最后插入的对象的后一位下标 &#125; &#125; private class SequenceSelector implements Selector &#123; private int i = 0; @Override public boolean end() &#123; //判断是否到达数组末尾 return i == items.length; &#125; @Override public Object current() &#123; //返回当前对象 return items[i]; &#125; @Override public void next() &#123; //游标移动 if (i &lt; items.length) i++; &#125; &#125; public Selector selector() &#123; return new SequenceSelector(); &#125; public static void main(String[] args) &#123; Sequence sequence = new Sequence(10); for (int i = 0; i &lt; 10; i++) &#123; sequence.add(Integer.toString(i)); &#125; Selector selector = sequence.selector(); while (!selector.end()) &#123; System.out.print(selector.current() + " "); selector.next(); &#125; &#125;&#125;运行结果0 1 2 3 4 5 6 7 8 9]]></content>
+      <categories>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>迭代器</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[first]]></title>
     <url>%2F2019%2F03%2F23%2Ffirst%2F</url>
     <content type="text"><![CDATA[我的第一篇博客]]></content>
@@ -9,17 +20,6 @@
       </categories>
       <tags>
         <tag>me</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F03%2F22%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.Quick StartCreate a new post1$ hexo new "My New Post"More info: WritingRun server1$ hexo serverMore info: ServerGenerate static files1$ hexo generateMore info: GeneratingDeploy to remote sites1$ hexo deployMore info: Deployment]]></content>
-      <categories>
-        <category>start</category>
-      </categories>
-      <tags>
-        <tag>start</tag>
       </tags>
   </entry>
 </search>

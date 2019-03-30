@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.caomuchang.com/"/>
-  <updated>2019-03-24T06:33:03.338Z</updated>
+  <updated>2019-03-30T07:52:04.841Z</updated>
   <id>https://www.caomuchang.com/</id>
   
   <author>
@@ -17,19 +17,44 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>一个简单的迭代器实例</title>
+    <link href="https://www.caomuchang.com/2019/03/30/selector/"/>
+    <id>https://www.caomuchang.com/2019/03/30/selector/</id>
+    <published>2019-03-30T07:20:56.000Z</published>
+    <updated>2019-03-30T07:52:04.841Z</updated>
+    
+    <content type="html"><![CDATA[<!-- build time:Sat Mar 30 2019 15:53:41 GMT+0800 (GMT+08:00) --><ul><li>实例代码</li></ul><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Selector</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">end</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function">Object <span class="title">current</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sequence</span> </span>&#123;     <span class="comment">//固定大小数组Object[]的包装类</span></span><br><span class="line">    <span class="keyword">private</span> Object[] items;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> next = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sequence</span><span class="params">(<span class="keyword">int</span> size)</span> </span>&#123;     <span class="comment">//初始化数组长度</span></span><br><span class="line">        items = <span class="keyword">new</span> Object[size];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object x)</span> </span>&#123;     <span class="comment">//往数组末尾插入Object对象</span></span><br><span class="line">        <span class="keyword">if</span> (next &lt;= items.length) &#123;</span><br><span class="line">            items[next] = x;</span><br><span class="line">            next++;     <span class="comment">//游标移动到数组中最后插入的对象的后一位下标</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">SequenceSelector</span> <span class="keyword">implements</span> <span class="title">Selector</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">end</span><span class="params">()</span> </span>&#123;      <span class="comment">//判断是否到达数组末尾</span></span><br><span class="line">            <span class="keyword">return</span> i == items.length;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">current</span><span class="params">()</span> </span>&#123;   <span class="comment">//返回当前对象</span></span><br><span class="line">            <span class="keyword">return</span> items[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">next</span><span class="params">()</span> </span>&#123;        <span class="comment">//游标移动</span></span><br><span class="line">            <span class="keyword">if</span> (i &lt; items.length)</span><br><span class="line">                i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Selector <span class="title">selector</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> SequenceSelector();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Sequence sequence = <span class="keyword">new</span> Sequence(<span class="number">10</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            sequence.add(Integer.toString(i));</span><br><span class="line">        &#125;</span><br><span class="line">        Selector selector = sequence.selector();</span><br><span class="line">        <span class="keyword">while</span> (!selector.end()) &#123;</span><br><span class="line">            System.out.print(selector.current() + <span class="string">" "</span>);</span><br><span class="line">            selector.next();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>运行结果<blockquote><p>0 1 2 3 4 5 6 7 8 9</p></blockquote></li></ul><!-- rebuild by neat -->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Sat Mar 30 2019 15:53:41 GMT+0800 (GMT+08:00) --&gt;&lt;ul&gt;&lt;li&gt;实例代码&lt;/li&gt;&lt;/ul&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="https://www.caomuchang.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="迭代器" scheme="https://www.caomuchang.com/tags/%E8%BF%AD%E4%BB%A3%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>first</title>
     <link href="https://www.caomuchang.com/2019/03/23/first/"/>
     <id>https://www.caomuchang.com/2019/03/23/first/</id>
     <published>2019-03-23T09:49:37.000Z</published>
     <updated>2019-03-24T06:33:03.338Z</updated>
     
-    <content type="html"><![CDATA[<!-- build time:Sun Mar 24 2019 16:20:01 GMT+0800 (GMT+08:00) --><p>我的第一篇博客</p><!-- rebuild by neat -->]]></content>
+    <content type="html"><![CDATA[<!-- build time:Sat Mar 30 2019 15:53:41 GMT+0800 (GMT+08:00) --><p>我的第一篇博客</p><!-- rebuild by neat -->]]></content>
     
     <summary type="html">
     
       
       
-        &lt;!-- build time:Sun Mar 24 2019 16:20:01 GMT+0800 (GMT+08:00) --&gt;&lt;p&gt;我的第一篇博客&lt;/p&gt;&lt;!-- rebuild by neat --&gt;
+        &lt;!-- build time:Sat Mar 30 2019 15:53:41 GMT+0800 (GMT+08:00) --&gt;&lt;p&gt;我的第一篇博客&lt;/p&gt;&lt;!-- rebuild by neat --&gt;
       
     
     </summary>
@@ -38,31 +63,6 @@
     
     
       <category term="me" scheme="https://www.caomuchang.com/tags/me/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="https://www.caomuchang.com/2019/03/22/hello-world/"/>
-    <id>https://www.caomuchang.com/2019/03/22/hello-world/</id>
-    <published>2019-03-22T07:59:19.374Z</published>
-    <updated>2019-03-24T06:33:03.408Z</updated>
-    
-    <content type="html"><![CDATA[<!-- build time:Sun Mar 24 2019 16:20:01 GMT+0800 (GMT+08:00) --><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p><!-- rebuild by neat -->]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;!-- build time:Sun Mar 24 2019 16:20:01 GMT+0800 (GMT+08:00) --&gt;&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hex
-      
-    
-    </summary>
-    
-      <category term="start" scheme="https://www.caomuchang.com/categories/start/"/>
-    
-    
-      <category term="start" scheme="https://www.caomuchang.com/tags/start/"/>
     
   </entry>
   
